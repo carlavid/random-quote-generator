@@ -3,13 +3,9 @@ Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
 ******************************************/
 
-// For assistance: 
-  // Check the "Project Resources" section of the project instructions
-  // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
-
-/*** 
+/**
  * `quotes` array 
-***/
+ */
 const quotes = [
   {
     quote: "The flower that blooms in adversity is the most rare and beautiful of all.",
@@ -45,37 +41,40 @@ const quotes = [
 ];
 
 
-/***
- * `getRandomQuote` function
-***/
+/**
+ * This function generates a random number and uses that number to 
+ * return a random quote object from the quotes array
+ * @returns {object} - the quote object
+ */
 function getRandomQuote() {
-  // should create random number to return a random quote object from the quotes array
   const randomNumber = Math.floor(Math.random() * quotes.length);
   return quotes[randomNumber];
-}
+};
 
 
-/***
- * `printQuote` function
-***/
+/**
+ * This function performs 3 tasks:
+ * -calls getRandomQuote function and stores returned quote object in variable 
+ * -uses variable to access quote properties and build HTML string
+ * -uses string to display a random quote in browser
+ */
 function printQuote() {
   const randomQuote = getRandomQuote();
   let html = `
     <p class="quote">${randomQuote.quote}</p>
     <p class="source">${randomQuote.source}`;
-  // check if quote has citation and year properties
+
   if (randomQuote.citation) {
     html += `<span class="citation">${randomQuote.citation}</span>`;
-  }
+  };
   if (randomQuote.year) {
     html += `<span class="year">${randomQuote.year}</span>`
-  }
-  // add closing p tag
+  };
+  
   html += `</p>`;
 
   document.getElementById('quote-box').innerHTML = html;
 }
-
 
 /***
  * click event listener for the print quote button
