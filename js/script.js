@@ -4,7 +4,12 @@ project 1 - A Random Quote Generator
 ******************************************/
 
 /**
- * `quotes` array 
+ * @type {object[]}
+ * 
+ * @property {string} quote - the actual quote
+ * @property {string} source - name or character who said it
+ * @property {string} citation - reference to the source of the quote
+ * @property {number} year - the year the quote originated
  */
 const quotes = [
   {
@@ -41,6 +46,7 @@ const quotes = [
 ];
 
 
+quotes
 /**
  * This function generates a random number and uses that number to 
  * return a random quote object from the quotes array
@@ -64,13 +70,15 @@ function printQuote() {
     <p class="quote">${randomQuote.quote}</p>
     <p class="source">${randomQuote.source}`;
 
+  // check if object contains citation property
   if (randomQuote.citation) {
     html += `<span class="citation">${randomQuote.citation}</span>`;
   };
+  // check if object contains year property
   if (randomQuote.year) {
     html += `<span class="year">${randomQuote.year}</span>`
   };
-  
+  // add closing p tag 
   html += `</p>`;
 
   document.getElementById('quote-box').innerHTML = html;
