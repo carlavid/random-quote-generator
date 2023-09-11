@@ -30,7 +30,7 @@ const quotes = [
     year: 1997,
   },
   {
-    quote: "You're braver thann you believe, and stronger than you seem, and smarter than you think.",
+    quote: "You're braver than you believe, and stronger than you seem, and smarter than you think.",
     source: "Winnie the Pooh",
     citation: "Pooh's Most Grand Adventure",
     year: 1997,
@@ -48,13 +48,33 @@ const quotes = [
 /***
  * `getRandomQuote` function
 ***/
-
+function getRandomQuote() {
+  // should create random number to return a random quote object from the quotes array
+  const randomNumber = Math.floor(Math.random() * quotes.length);
+  return quotes[randomNumber];
+}
 
 
 /***
  * `printQuote` function
 ***/
+function printQuote() {
+  const randomQuote = getRandomQuote();
+  let html = `
+    <p class="quote">${randomQuote.quote}</p>
+    <p class="source">${randomQuote.source}`;
+  // check if quote has citation and year properties
+  if (randomQuote.citation) {
+    html += `<span class="citation">${randomQuote.citation}</span>`;
+  }
+  if (randomQuote.year) {
+    html += `<span class="year">${randomQuote.year}</span>`
+  }
+  // add closing p tag
+  html += `</p>`;
 
+  document.getElementById('quote-box').innerHTML = html;
+}
 
 
 /***
