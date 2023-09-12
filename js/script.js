@@ -17,18 +17,21 @@ const quotes = [
     source: "The Emperor",
     citation: "Mulan",
     year: 1998,
+    tags: ["inspiration", "adversity"],
   },
   {
     quote: "Our fate lives within us. You only have to be brave enough to see it.",
     source: "Merida",
     citation: "Brave",
     year: 2012,
+    tags: ["courage", "bravery"],
   },
   {
     quote: "A true hero isn't measured by the size of his strength, but by the strength of his heart.",
     source: "Zeus",
     citation: "Hercules",
     year: 1997,
+    tags: ["strength"],
   },
   {
     quote: "You're braver than you believe, and stronger than you seem, and smarter than you think.",
@@ -46,9 +49,8 @@ const quotes = [
 ];
 
 
-quotes
 /**
- * This function generates a random number and uses that number to 
+ * Function that generates a random number and uses that number to 
  * return a random quote object from the quotes array
  * @returns {object} - the quote object
  */
@@ -59,7 +61,7 @@ function getRandomQuote() {
 
 
 /**
- * This function performs 3 tasks:
+ * Function that performs 3 tasks:
  * -calls getRandomQuote function and stores returned quote object in variable 
  * -uses variable to access quote properties and build HTML string
  * -uses string to display a random quote in browser
@@ -78,15 +80,52 @@ function printQuote() {
   if (randomQuote.year) {
     html += `<span class="year">${randomQuote.year}</span>`
   };
+  // check if object contains tags property
+  if (randomQuote.tags) {
+    html += `<span class="tags"> Tags: ${randomQuote.tags.join(", ")}</span>`
+  };
   // add closing p tag 
   html += `</p>`;
 
   document.getElementById('quote-box').innerHTML = html;
 }
 
-/***
- * click event listener for the print quote button
- * DO NOT CHANGE THE CODE BELOW!!
-***/
 
+/**
+ * function that generates random values for red, green and blue
+ * and combines the values to generate a random background color;
+ */ 
+function randomBackgroundColor() {
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+  const randomColor = `rgb(${r}, ${g}, ${b})`;
+  document.body.style.backgroundColor = randomColor;
+}
+
+
+/**
+ * timing function that uses setInterval() method to return
+ * a random quote quote every 10 seconds
+ */
+function updateQuote() {
+  return setInterval(printQuote, 10000);
+}
+
+/**
+ * timing function that uses setInterval() method to update
+ * background color every 10 seconds
+ */
+function updateBackgroundColor() {
+  return setInterval(randomBackgroundColor, 10000);
+}
+
+
+// event listener for the print quote button
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
+// event listener to change background color 
+document.getElementById('load-quote').addEventListener("click", randomBackgroundColor, false);
+
+// call functions 
+updateQuote();
+updateBackgroundColor();
