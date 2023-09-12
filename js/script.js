@@ -105,16 +105,16 @@ function randomBackgroundColor() {
 
 
 /**
- * timing function that uses setInterval() method to return
- * a random quote quote every 10 seconds
+ * timing function that uses setInterval() method and
+ * calls printQuote function to update quote every 10 seconds
  */
 function updateQuote() {
   return setInterval(printQuote, 10000);
 }
 
 /**
- * timing function that uses setInterval() method to update
- * background color every 10 seconds
+ * timing function that uses setInterval() method and calls 
+ * randomBackgroundColor function to update background color every 10 seconds
  */
 function updateBackgroundColor() {
   return setInterval(randomBackgroundColor, 10000);
@@ -126,6 +126,6 @@ document.getElementById('load-quote').addEventListener("click", printQuote, fals
 // event listener to change background color 
 document.getElementById('load-quote').addEventListener("click", randomBackgroundColor, false);
 
-// call functions 
+// call functions to run intervals
 updateQuote();
 updateBackgroundColor();
