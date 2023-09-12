@@ -82,7 +82,7 @@ function printQuote() {
   };
   // check if object contains tags property
   if (randomQuote.tags) {
-    html += `<span class="tags"> Tags: ${randomQuote.tags.join(", ")}</span>`
+    html += `<span class="tags"> | Tags: ${randomQuote.tags.join(", ")}</span>`
   };
   // add closing p tag 
   html += `</p>`;
